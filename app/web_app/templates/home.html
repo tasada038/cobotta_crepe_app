@@ -1,0 +1,149 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+<!-- トップページ -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block headline %}
+{{ message }}
+{% endblock %}
+
+{% block content %}
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ online_status }}</li>
+</ul>
+
+<p class="ml-2 mt-5 mb-2 font-weight-bold">オススメ</p>
+<div class="row">
+    <div class="col-md-3 ">
+        <a class=" mb-2 justify-content-center" role="button" id="{{choco_strawberry_url}}" onclick="confirm_menu_01(this.id);">
+            <img src="static/menu/whip_choco_strawberry_crepe.png" alt="チョコストロベリーホイップ" width="200" height="200">
+        </a>
+
+        <!--
+        <a class="ml-1 mb-2 justify-content-center" role="button" onclick="confirm_menu_05();">
+            <img src="static/menu/custard_biscuit_strawberry_crepe.png" alt="ココアストロベリーカスタード" width="200" height="200">
+        </a>  
+        -->
+    </div>
+
+    <div class="col-md-3 ">
+        <a class="ml-2 mb-2 justify-content-center" role="button" id="{{charamel_flake_url}}" onclick="confirm_menu_02(this.id);">
+            <img src="static/menu/whip_flake_caramel_crepe.png" alt="フレークキャラメルホイップ" width="200" height="200">
+        </a>
+        <!--
+        <a class="ml-2 mb-2 justify-content-center" role="button" onclick="confirm_menu_04();">
+            <img src="static/menu/whip_banana_choco_crepe.png" alt="バナナチョコホイップ" width="200" height="200">
+        </a> 
+        --> 
+    </div>
+
+    <div class="col-md-3 ">
+        <a class="ml-2 mb-2 justify-content-center" role="button" id="{{almond_choco_url}}" onclick="confirm_menu_03(this.id);">
+            <img src="static/menu/whip_almond_choco_crepe.png" alt="アーモンドチョコホイップ" width="200" height="200">
+        </a>   
+    </div>
+
+</div>
+
+<form method="post" action="/multicontrol">
+    <div>
+        <p class="mt-4 mb-2 font-weight-bold">クリーム類</p>
+        <div class="btn3_wrap">
+            <input type="checkbox" name="menu" value="Whip" id="menu_21">
+            <label for="menu_21" class="mb-4 mr-3">ホイップ</label>
+        </div>
+        <div class="btn3_wrap">
+            <input type="checkbox" name="menu" value="Custard" id="menu_22">
+            <label for="menu_22" class="mb-4 mr-3">カスタード</label>
+        </div>
+    </div>
+
+    <div>
+        <p class="mt-3 mb-2 font-weight-bold">ソース・ジャム類</p>
+
+        <div class="btn_wrap">
+            <input type="checkbox" name="menu" value="Chocolate" id="menu_1">
+            <label for="menu_1" class="mb-4 mr-3">チョコソース</label>
+        </div>
+        <div class="btn_wrap">
+            <input type="checkbox" name="menu" value="Caramel" id="menu_2">
+            <label for="menu_2" class="mb-4 mr-3">キャラメルソース</label>
+        </div>
+        <div class="btn_wrap">
+            <input type="checkbox" name="menu" value="Matcha" id="menu_3">
+            <label for="menu_3" class="mb-4 mr-3">抹茶ソース</label>
+        </div>
+        <div class="btn_wrap">
+            <input type="checkbox" name="menu" value="Strawberry" id="menu_4">
+            <label for="menu_4" class="mb-4 mr-3">いちごジャム</label>
+        </div>
+
+        <div class="btn_wrap">
+            <input type="checkbox" name="menu" value="Blueberry" id="menu_5">
+            <label for="menu_5" class="mb-4 mr-3">ブルーベリージャム</label>
+        </div>
+        <div class="btn_wrap">
+            <input type="checkbox" name="menu" value="Honey" id="menu_6">
+            <label for="menu_6" class="mb-4 mr-3">はちみつ</label>
+        </div>        
+    </div>
+
+    <div>
+        <p class="mb-2 font-weight-bold">トッピング類</p>
+
+        <div class="btn2_wrap">
+            <input type="checkbox" name="menu" value="Chocotip" id="menu_10">
+            <label for="menu_10" class="mb-4 mr-3">チョコチップ</label>
+        </div>
+        <div class="btn2_wrap">
+            <input type="checkbox" name="menu" value="Cocoa" id="menu_11">
+            <label for="menu_11" class="mb-4 mr-3">ココアチップ</label>
+        </div>
+        <div class="btn2_wrap">
+            <input type="checkbox" name="menu" value="Corn" id="menu_12">
+            <label for="menu_12" class="mb-4 mr-3">コーンフレーク</label>
+        </div>
+        <div class="btn2_wrap">
+            <input type="checkbox" name="menu" value="Almond" id="menu_13">
+            <label for="menu_13" class="mb-4 mr-3">アーモンドダイス</label>
+        </div>
+
+        <div class="btn2_wrap">
+            <input type="checkbox" name="menu" value="Banana" id="menu_14">
+            <label for="menu_14" class="mb-4 mr-3">ドライバナナ</label>
+        </div>
+
+        <div class="btn2_wrap">
+            <input type="checkbox" name="menu" value="Fruit" id="menu_15">
+            <label for="menu_15" class="mb-4 mr-3">ドライフルーツ</label>
+        </div>
+
+    </div>
+
+    <!--
+    <div class="order_btm">
+        <input type="submit" class="w-50 m-3 justify-content-center btn btn-secondary btn-lg text-white" href="/multicontrol"role="button" value="上記の内容で注文">
+    </div>
+    -->
+
+    <div class="order_btm">
+        <input type="submit" class="w-50 m-3 justify-content-center btn btn-secondary btn-lg text-white" role="button" id="{{order_url}}" onclick="confirm_original_menu(this.id);" value="上記の内容で注文">
+    </div>
+
+    <!-- 
+    <div class="order_btm">
+        <input type="submit" class="w-50 m-3 justify-content-center btn btn-secondary btn-lg text-white" href="/multicontrol_synchronous"role="button" value="上記の内容で注文 (並列処理)">
+    </div>
+    -->
+</form>
+
+<p>{{url}}</p>
+
+{% endblock %}
+
+{% block footer %}
+@Crepe Application 2022
+{% endblock %}

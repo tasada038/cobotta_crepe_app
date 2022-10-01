@@ -1,0 +1,3 @@
+DEBUG = True
+SQLALCHEMY_DATABASE_URI = 'sqlite:///customer_info.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = True

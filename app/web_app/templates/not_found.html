@@ -1,0 +1,14 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block headline %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<p>{{ message }}</p>
+{% endblock %}

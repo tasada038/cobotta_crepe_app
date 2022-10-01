@@ -1,0 +1,38 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+<!-- トップページ -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block headline %}
+{{ message }}
+{% endblock %}
+
+{% block content %}
+
+<ul class="list-unstyled">
+    <li class="media">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">第1条（定義）</h5>
+      </div>
+    </li>
+    <li class="media my-4">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">第2条（利用者情報の取得と利用目的）</h5>
+
+    </div>
+    </li>
+    <li class="media">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">第3条（同意）</h5>
+      </div>
+    </li>
+  </ul>
+
+{% endblock %}
+
+{% block footer %}
+@Flask Application 2022
+{% endblock %}

@@ -1,0 +1,77 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+{% extends "layout.html" %}
+
+<!-- loginページ -->
+{% block title %}
+Login
+{% endblock %}
+
+{% block headlinet %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<!-- messageのレイアウトクラスを場合分け -->
+{% if err %}    <!-- err=Trueのとき警告BG -->
+<p class="alert alert-warning">
+{% else %}    <!-- err=FalseのときlightBG -->
+<p class="alert alert-light">
+{% endif %}
+{{ message }}</p>
+
+<div class="card">    <!-- カードコンテンツ -->
+    <div class="card-header">    <!-- カードヘッダー -->
+        <h4 class="card-title">
+            Login
+        </h4>
+    </div>
+    <div class="card-body">    <!-- カードボディ -->
+        <form method="post" action="/login">
+        <div class="form-group">    <!-- 入力フィールドとフォームグループ -->
+            <label for="id">id</label>
+            <input type="text" class="form-control" id="id" name="id" value="{{id}}">
+            <small class="form-text text-muted">    <!-- 小文字のフォームテキスト -->
+                ※IDを入力してください
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="pass">password</label>
+            <input type="password" class="form-control" id="pass" name="pass">
+            <small class="form-text text-muted">
+                ※パスワードを入力してください
+            </small>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login">
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- 
+<table>
+    <tr>
+        <th>id</th>
+        <td>
+            <input type="text" name="id" value="{{id}}">
+        </td>
+    </tr>
+    <tr>
+        <th>password</th>
+        <td>
+            <input type="password" name="pass">
+        </td>
+    </tr>
+    <td>
+        <input type="submit" value="Login">
+    </td>
+</form>
+</table>
+-->
+
+{% endblock %}
+
+{% block footer %}
+@ COBOTTA Crepe Application 2022
+{% endblock %}

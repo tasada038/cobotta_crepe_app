@@ -1,0 +1,25 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block headline %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<p>{{ message1 }}</p>
+<p>{{ message2 }}</p>
+
+<div class="row">
+    <div class="col-md-6 ">
+      <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_clear_error" role="button">Bake COBOTTA Clear Error</a>
+
+      <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_clear_error" role="button">Topping COBOTTA Clear Error</a>
+
+      <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/" role="button">Home</a>
+    </div>
+</div>
+{% endblock %}

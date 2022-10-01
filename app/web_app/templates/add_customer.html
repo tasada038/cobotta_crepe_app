@@ -1,0 +1,116 @@
+<!-- layout.htmlを継承してWebページを作成 -->
+<!-- トップページ -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block headline %}
+{{ message }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+	<div class="row mb-3">
+		<div class="col-md-6 ">
+			<h2>顧客情報一覧</h2>
+		</div>
+		<div class="col-md-6 ">
+			<a class="w-50 justify-content-center btn btn-secondary btn-lg" href="/db_all_delete" role="button">全て削除</a>
+		</div>
+	</div>
+
+	<table class="mt-2 table table-striped">
+		<thead>
+            <tr>
+				<th scope="col">#</th>
+				<th scope="col">性別</th>
+				<th scope="col">年齢</th>
+				<th scope="col">注文内容</th>
+				<th scope="col">注文数</th>
+				<th scope="col">注文時間</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+			<tr>
+			<th scope="row">{{ customer.id }}</th>
+			<td>
+				<a class="text-decoration-none" href="{{ url_for('customer_detail', id=customer.id) }}">
+				  {{ customer.gender }}
+				</a>
+			</td>
+			<td>{{ customer.year }}代</td>
+			<td>{{ customer.menu }}</td>
+			<td>{{ customer.count }}</td>
+			<td>{{ customer.order_time }}</td>
+			<td>
+				<form action="{{ url_for('customer_delete', id=customer.id) }}" method="POST">
+				  <input class="btn btn-secondary btn-sm" type="submit" value="削除">  
+				</form>
+			</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+	<div class="card px-1 py-4" style="width: 400px;">
+		<div class="card-body">
+			<h6 class="card-title mb-3">顧客情報登録ページ</h6>
+			<form action="/add_customer" method="POST">
+
+				<div class="row mt-2">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input name="gender" class="form-control" type="text" placeholder="性別"></input>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-2">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input name="year" min="0" class="form-control" type="text" placeholder="年齢"></input>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-2">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input name="menu" class="form-control" type="text" placeholder="注文内容"></input>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-2">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input name="count" class="form-control" type="text" placeholder="注文数"></input>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-2">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input name="order_time" class="form-control" type="text" placeholder="注文時間"></input>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-3">
+					<div class="col text-center">
+						<button type="submit" class="btn btn-primary">顧客情報追加</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{
+    "name": "COBOTTA_Crepe_Cooking",
+    "version": "1.0.0",
+    "description": "",
+    "main": "renderer.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron .",
+        "package": "node package_python.js && npm run -s package-electron && npm run -s package-cleanup",
+        "package-electron": "electron-builder",
+        "package-cleanup": "rm -rf build && rm -rf run_app.spec && rm -rf dist-python"
+    },
+    "build": {
+        "appId": "com.COBOTTA-Crepe-Cooking.my-app",
+        "productName": "ElectronFlask",
+        "asar": false,
+        "asarUnpack": [
+            "**/*.node"
+        ],
+        "mac": {
+            "category": "public.app-category.utilities"
+        },
+        "win": {
+            "target": "nsis"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        },
+        "files": [
+            "renderer.js",
+            "icon.png",
+            "node_modules/**/*"
+        ],
+        "extraResources": [
+            {
+                "from": "dist-python/",
+                "to": "app/dist-python",
+                "filter": [
+                    "**/*"
+                ]
+            }
+        ]
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "ps-tree": "^1.2.0",
+        "python-shell": "^3.0.1",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.6"
+    },
+    "devDependencies": {
+        "electron": "^16.0.8",
+        "electron-builder": "^22.11.7"
+    }
+}

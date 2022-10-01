@@ -1,0 +1,54 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+<!-- トップページ -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block headline %}
+{{ message }}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 ">
+  
+        <a class="ml-1 mb-2 justify-content-center" role="button" onclick="confirm_menu_01();">
+            <img src="static/menu/whip_choco_strawberry_crepe.png" alt="チョコストロベリーホイップ" width="200" height="200">
+        </a>
+
+        <a class="ml-1 mb-2 justify-content-center" role="button" onclick="confirm_menu_05();">
+            <img src="static/menu/custard_biscuit_strawberry_crepe.png" alt="ココアストロベリーカスタード" width="200" height="200">
+        </a>  
+
+    </div>
+
+    <div class="col-md-3 ">
+        <a class="ml-2 mb-2 justify-content-center" role="button" onclick="confirm_menu_02();">
+            <img src="static/menu/whip_flake_caramel_crepe.png" alt="フレークキャラメルホイップ" width="200" height="200">
+        </a>
+
+        <a class="ml-2 mb-2 justify-content-center" role="button" onclick="confirm_menu_04();">
+            <img src="static/menu/whip_banana_choco_crepe.png" alt="バナナチョコホイップ" width="200" height="200">
+        </a>  
+    </div>
+
+    <div class="col-md-3 ">
+        <a class="ml-2 mb-2 justify-content-center" role="button" onclick="confirm_menu_03();">
+            <img src="static/menu/whip_almond_choco_crepe.png" alt="アーモンドチョコホイップ" width="200" height="200">
+        </a>   
+    </div>
+
+</div>
+
+<div class="order_btm">
+  <a class="w-50 ml-1 mt-3 mb-3 justify-content-center btn btn-secondary btn-lg text-white" role="button" onclick="confirm_menu();">おまかせ注文</a>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+@Flask Application 2022
+{% endblock %}

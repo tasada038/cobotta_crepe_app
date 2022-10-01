@@ -1,0 +1,236 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+<!-- https://gionkunz.github.io/chartist-js/examples.html -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block headline %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">{{ message }}</li>
+  <li class="list-group-item">{{ menu_01 }}</li>
+  <li class="list-group-item">{{ menu_02 }}</li>
+  <li class="list-group-item">{{ menu_03 }}</li>
+  <li class="list-group-item">{{ original_menu }}</li>
+  <li class="list-group-item" id="js_cost" title="{{cost_rate_view}}">原価率：{{ cost_rate_view }}</li>
+  <li class="list-group-item" id="js_total" title="{{total_food_cost}}">合計食材費：{{ total_food_cost }}</li>
+  <li class="list-group-item" id="js_gross" title="{{gross_profit_view}}">粗利益：{{ gross_profit_view }}</li>
+  <li class="list-group-item" id="js_sales" title="{{sales}}">売上高：{{ sales }}</li>
+</ul>
+
+
+<div class="w-50 m-3 mb-2 ct-chart-cnt ">材料在庫管理</div> 
+<!-- empty span for python value-->
+<span id="js_whip" title="{{whip_cnt}}"></span>
+<span id="js_custard" title="{{custard_cnt}}"></span>
+<span id="js_choco" title="{{choco_source_cnt}}"></span>
+<span id="js_caramel" title="{{caramel_source_cnt}}"></span>
+<span id="js_straw" title="{{straw_source_cnt}}"></span>
+<span id="js_blue" title="{{blue_source_cnt}}"></span>
+<span id="js_flake" title="{{flake_cnt}}"></span>
+<span id="js_almond" title="{{almond_cnt}}"></span>
+<span id="js_chocotip" title="{{chocotip_cnt}}"></span>
+<span id="js_biscuit" title="{{biscuit_cnt}}"></span>
+
+<script type="text/javascript">
+  // var cost = document.getElementById('js_cost').title;
+  var whip = document.getElementById('js_whip').title;
+  var custard = document.getElementById('js_custard').title;
+  var choco = document.getElementById('js_choco').title;
+  var caramel = document.getElementById('js_caramel').title;
+  var straw = document.getElementById('js_straw').title;
+  var blue = document.getElementById('js_blue').title;
+  var flake = document.getElementById('js_flake').title;
+  var almond = document.getElementById('js_almond').title;
+  var chocotip = document.getElementById('js_chocotip').title;
+  var biscuit = document.getElementById('js_biscuit').title;
+
+  var whip_rate = 100 - whip*10
+  var custard_rate = 100 - custard*10
+  var choco_rate = 100 - (choco*5/150)*100
+  var caramel_rate = 100 - (caramel*20/150)*100
+  var straw_rate = 100 - (straw*20/150)*100
+  var blue_rate = 100 - (blue*20/150)*100
+  var flake_rate = 100 - (flake*5/30)*100
+  var almond_rate = 100 - (almond*10/120)*100
+  var chocotip_rate = 100 - (chocotip*10/120)*100
+  var biscuit_rate = 100 - (biscuit*10/120)*100
+
+  if (whip_rate > 20 && whip_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_1','#fffc4d');
+  } else if (whip_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_1','#ff4d7a');
+  }
+
+  if (custard_rate > 20 && custard_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_2','#fffc4d');
+  } else if (custard_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_2','#ff4d7a');
+  }
+
+  if (choco_rate > 20 && choco_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_3','#fffc4d');
+  } else if (choco_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_3','#ff4d7a');
+  }
+
+  if (caramel_rate > 20 && caramel_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_4','#fffc4d');
+  } else if (caramel_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_4','#ff4d7a');
+  }
+
+  if (straw_rate > 20 && straw_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_5','#fffc4d');
+  } else if (straw_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_5','#ff4d7a');
+  }
+
+  if (blue_rate > 20 && blue_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_6','#fffc4d');
+  } else if (blue_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_6','#ff4d7a');
+  }
+
+  if (flake_rate > 20 && flake_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_7','#fffc4d');
+  } else if (flake_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_7','#ff4d7a');
+  }
+
+  if (almond_rate > 20 && almond_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_8','#fffc4d');
+  } else if (almond_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_8','#ff4d7a');
+  }
+
+  if (chocotip_rate > 20 && chocotip_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_9','#fffc4d');
+  } else if (chocotip_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_9','#ff4d7a');
+  }
+
+  if (biscuit_rate > 20 && biscuit_rate <= 40){
+    document.documentElement.style.setProperty('--glaph_color_10','#fffc4d');
+  } else if (biscuit_rate <= 20){
+    document.documentElement.style.setProperty('--glaph_color_10','#ff4d7a');
+  }
+
+  var data = {
+    labels: ['ホイップ', 'カスタード', 'チョコソース', 'キャラメル', 'ストロベリー', 'ブルーベリー', 'フレーク', 'アーモンド', 'チョコチップ', 'ココアビスケット'],
+    series: [whip_rate, custard_rate, choco_rate, caramel_rate, straw_rate, blue_rate, flake_rate, almond_rate, chocotip_rate, biscuit_rate]
+  };
+
+  var option = {
+    distributeSeries: true,
+    width: '150%',
+    height: '300px',
+    axisY: {
+      offset: 100,
+      scaleMinSpace: 40,
+      labelInterpolationFnc: function(value) {
+        return value + '%'
+      },
+    },
+
+  };
+
+  new Chartist.Bar('.ct-chart-cnt',data, option);
+</script>
+
+<style>
+  :root{
+    --glaph_color_1: #58f849;
+    --glaph_color_2: #58f849;
+    --glaph_color_3: #58f849;
+    --glaph_color_4: #58f849;
+    --glaph_color_5: #58f849;
+    --glaph_color_6: #58f849;
+    --glaph_color_7: #58f849;
+    --glaph_color_8: #58f849;
+    --glaph_color_9: #58f849;
+    --glaph_color_10: #58f849;
+  }
+  
+  .ct-series-a .ct-bar{
+    stroke: var(--glaph_color_1);
+  }
+  .ct-series-b .ct-bar{
+    stroke: var(--glaph_color_2);
+  }
+  .ct-series-c .ct-bar{
+    stroke: var(--glaph_color_3);
+  }
+  .ct-series-d .ct-bar{
+    stroke: var(--glaph_color_4);
+  }
+  .ct-series-e .ct-bar{
+    stroke: var(--glaph_color_5);
+  }
+  .ct-series-f .ct-bar{
+    stroke: var(--glaph_color_6);
+  }
+  .ct-series-g .ct-bar{
+    stroke: var(--glaph_color_7);
+  }
+  .ct-series-h .ct-bar{
+    stroke: var(--glaph_color_8);
+  }
+  .ct-series-i .ct-bar{
+    stroke: var(--glaph_color_9);
+  }
+  .ct-series-j .ct-bar{
+    stroke: var(--glaph_color_10);
+  }
+  .ct-bar {
+    stroke-width: 5%;
+  }
+  </style>
+
+<!--
+<div class="w-50 m-3 mb-2 ct-chart ">経費・売上高</div>
+
+<script type="text/javascript">
+  // var cost = document.getElementById('js_cost').title;
+  var total = document.getElementById('js_total').title;
+  var gross = document.getElementById('js_gross').title;
+  var sales = document.getElementById('js_sales').title;
+
+  var data = {
+    labels: ['合計食材費', '粗利益', '売上高'],
+    series: [total, gross, sales]
+  };
+
+  var option = {
+    distributeSeries: true,
+    width: '100%',
+    height: '300px',
+    axisY: {
+      offset: 120,
+      scaleMinSpace: 40,
+      labelInterpolationFnc: function(value) {
+        return value + '円'
+      },
+    },
+
+  };
+
+  new Chartist.Bar('.ct-chart',data, option);
+</script>
+-->
+
+  <div class="row">
+    <div class="col-md-6 ">
+      <a class="w-50 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_sales_update" role="button">データ更新</a>
+
+      <input type="submit" class="w-50 m-3 justify-content-center btn btn-secondary btn-lg text-white" id="download" role="button" value="Download CSV">
+    </div>
+  </div> 
+
+
+{% endblock %}

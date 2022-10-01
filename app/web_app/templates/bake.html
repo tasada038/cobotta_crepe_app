@@ -1,0 +1,213 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block headline %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">{{ message }}</li>
+  <li class="list-group-item">{{ message2 }}</li>
+  <li class="list-group-item">{{ message3 }}</li>
+  <li class="list-group-item">{{ message4 }}</li>
+</ul>
+
+<div class="row">
+  <div class="col-md-5 ">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bakeinitial" role="button">初期位置</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-info btn-lg" href="/bakemotion" role="button">焼きプログラムのみ実行</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_handopen" role="button">Hand Open</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_clear_error" role="button">Clear Error</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_autocal" role="button">Auto CALSET</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_packing" role="button">Packing</a>
+  </div>
+
+  <div class="col-md-3">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_oiling" role="button">油引き</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_redol" role="button">レードル</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_tonnbo" role="button">トンボ</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_hera" role="button">ヘラ移動</a>
+
+  </div>
+
+  <div class="col-md-2">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_subx" role="button">-X</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_suby" role="button">-Y</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_subz" role="button">-Z</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_subj1" role="button">-J1</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_subj2" role="button">-J2</a>
+  </div>
+
+  <div class="col-md-2">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_addx" role="button">+X</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_addy" role="button">+Y</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_addz" role="button">+Z</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_addj1" role="button">+J1</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/bake_rec_addj2" role="button">+J2</a>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-sm-6 w-100 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">トンボ高さ調整:{{ tonnbo_z_data }}</h5>
+        <form action="/tonnbo_z_update" method="POST" enctype="multipart/form-data">
+
+          <p id="msg">調整量：</p>
+
+          <div class="w-100 m-3">
+            <label>
+              <input type="range" min="-0.1" max="0.1" step="0.01" id="volumeSlider" name="tonnbo_z" value="volumeSlider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 btn btn-secondary" type="submit">Submit</button>
+
+          <script>
+          function inputChange(event){
+            if (volumeSlider.value >= 0){
+              msg.innerText = '調整量：+' + volumeSlider.value;
+            } else {
+              msg.innerText = '調整量：' + volumeSlider.value;
+            }
+          }
+          let volumeSlider = document.getElementById('volumeSlider');
+          volumeSlider.addEventListener('input', inputChange);
+          let msg = document.getElementById('msg');
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 w-100 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">ヘラ初期位置調整:{{ hera_y_data }}</h5>
+        <form action="/hera_y_update" method="POST" enctype="multipart/form-data">
+
+          <p id="hera_msg">調整量：</p>
+
+          <div class="w-100 m-3">
+            <label>
+              <input type="range" min="-2" max="2" step="0.2" id="hera_volumeSlider" name="hera_y" value="hera_volumeSlider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 btn btn-secondary" type="submit">Submit</button>
+
+          <script>
+          function inputChange(event){
+            if (hera_volumeSlider.value >= 0){
+              hera_msg.innerText = '調整量：+' + hera_volumeSlider.value;
+            } else {
+              hera_msg.innerText = '調整量：' + hera_volumeSlider.value;
+            }
+          }
+          let hera_volumeSlider = document.getElementById('hera_volumeSlider');
+          hera_volumeSlider.addEventListener('input', inputChange);
+          let hera_msg = document.getElementById('hera_msg');
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 w-100 mt-3">
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">トンボ傾き調整 rx:{{ tonnbo_rx_data }}</h5>
+        <form action="/tonnbo_rx_update" method="POST" enctype="multipart/form-data">
+
+          <p id="tonnbo_rx_msg">調整量：</p>
+
+          <div class="w-100 m-3">
+            <label>
+              <input type="range" min="-0.1" max="0.1" step="0.01" id="tonnbo_rx_Slider" name="tonnbo_rx" value="tonnbo_rx_Slider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 btn btn-secondary" type="submit">Submit</button>
+          <p class="fs-6">rot_rx,ry +: inside up</p>
+          <p class="fs-6">rot_rx,ry -: outside up</p>
+
+          <script>
+          function inputChange(event){
+            if (tonnbo_rx_Slider.value >= 0){
+              tonnbo_rx_msg.innerText = '調整量：+' + tonnbo_rx_Slider.value;
+            } else {
+              tonnbo_rx_msg.innerText = '調整量：' + tonnbo_rx_Slider.value;
+            }
+          }
+    
+          let tonnbo_rx_Slider = document.getElementById('tonnbo_rx_Slider');
+          tonnbo_rx_Slider.addEventListener('input', inputChange);
+          let tonnbo_rx_msg = document.getElementById('tonnbo_rx_msg');
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 mt-3">
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">トンボ傾き調整 ry:{{ tonnbo_ry_data }}</h5>
+        <form action="/tonnbo_ry_update" method="POST" enctype="multipart/form-data">
+          <div class="w-100 m-3">
+
+            <p id="tonnbo_ry_msg">調整量：</p>
+
+            <label>
+              <input type="range" min="-0.1" max="0.1" step="0.01" id="tonnbo_ry_Slider" name="tonnbo_ry" value="tonnbo_ry_Slider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 mb-2 btn btn-secondary" type="submit">Submit</button>
+          <p class="fs-6">rot_rx,ry +: inside up</p>
+          <p class="fs-6">rot_rx,ry -: outside up</p>
+
+          <script>
+          function inputChange(event){
+            if (tonnbo_ry_Slider.value >= 0){
+              tonnbo_ry_msg.innerText = '調整量：+' + tonnbo_ry_Slider.value;
+            } else {
+              tonnbo_ry_msg.innerText = '調整量：' + tonnbo_ry_Slider.value;
+            }
+          }
+      
+          let tonnbo_ry_Slider = document.getElementById('tonnbo_ry_Slider');
+          tonnbo_ry_Slider.addEventListener('input', inputChange);
+          let tonnbo_ry_msg = document.getElementById('tonnbo_ry_msg');
+          </script>
+        </form>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

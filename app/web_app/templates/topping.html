@@ -1,0 +1,206 @@
+﻿<!-- layout.htmlを継承してWebページを作成 -->
+{% extends "layout_home.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block headline %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">{{ message }}</li>
+  <li class="list-group-item">{{ message2 }}</li>
+  <li class="list-group-item">{{ message3 }}</li>
+  <li class="list-group-item">{{ message4 }}</li>
+
+</ul>
+
+<div class="row">
+  <div class="col-md-4 ">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/toppinginitial" role="button">初期位置</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-info btn-lg" href="/toppingmotion" role="button">トッピング</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_handopen" role="button">Hand Open</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_clear_error" role="button">Clear Error</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_autocal" role="button">Auto CALSET</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_packing" role="button">Packing</a>
+  </div>
+
+  <div class="col-md-3">
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_whip" role="button">ホイップ</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_custard" role="button">カスタード</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_blueberry_jam" role="button">ブルーベリー</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_strawberry_jam" role="button">ストロベリー</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_caramel_source" role="button">キャラメル</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_chocolate_source" role="button">チョコソース</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_honey" role="button">はちみつ</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_matcha_source" role="button">抹茶</a>
+  
+
+  </div>
+
+  <div class="col-md-3">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_flake" role="button">フレーク</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_almond" role="button">アーモンド</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_choco" role="button">チョコ</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_biscuits" role="button">ビスケット</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_fold" role="button">折り畳み</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_serve_left" role="button">提供L</a>
+
+    <!-- <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_serve_right" role="button">提供R</a> -->
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_serve_cream" role="button">+α ホイップ</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_serve_spray" role="button">+α チョコ</a>
+
+  </div>
+
+  <div class="col-md-2">
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_addx" role="button">+X</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_addy" role="button">+Y</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_addz" role="button">+Z</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_addj1" role="button">+J1</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_addj2" role="button">+J2</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_subx" role="button">-X</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_suby" role="button">-Y</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_subz" role="button">-Z</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_subj1" role="button">-J1</a>
+
+    <a class="w-100 m-3 justify-content-center btn btn-secondary btn-lg" href="/topping_rec_subj2" role="button">-J2</a>
+
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-sm-4 w-100 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">ストロベリー回転角調整:{{ straw_j6_data }}°</h5>
+        <form action="/straw_j6_update" method="POST" enctype="multipart/form-data">
+          <div class="w-100 m-3">
+
+            <p id="straw_msg">調整量：</p>
+
+            <label>
+              <input type="range" min="-5" max="5" step="1" id="straw_volumeSlider" name="straw_j6" value="straw_volumeSlider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 btn btn-secondary" type="submit">Submit</button>
+
+          <script>
+          function inputChange(event){
+            if (straw_volumeSlider.value >= 0){
+              straw_msg.innerText = '調整量：+' + straw_volumeSlider.value;
+            } else {
+              straw_msg.innerText = '調整量：' + straw_volumeSlider.value;
+            }
+          }
+          let straw_volumeSlider = document.getElementById('straw_volumeSlider');
+          straw_volumeSlider.addEventListener('input', inputChange);
+          let straw_msg = document.getElementById('straw_msg');
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4 w-100 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">キャラメル回転角調整:{{ caramel_j6_data }}°</h5>
+        <form action="/caramel_j6_update" method="POST" enctype="multipart/form-data">
+          <div class="w-100 m-3">
+
+            <p id="caramel_msg">調整量：</p>
+
+            <label>
+              <input type="range" min="-5" max="5" step="1" id="caramel_volumeSlider" name="caramel_j6" value="caramel_volumeSlider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 btn btn-secondary" type="submit">Submit</button>
+
+          <script>
+          function inputChange(event){
+            if (caramel_volumeSlider.value >= 0){
+              caramel_msg.innerText = '調整量：+' + caramel_volumeSlider.value;
+            } else {
+              caramel_msg.innerText = '調整量：' + caramel_volumeSlider.value;
+            }
+          }
+          let caramel_volumeSlider = document.getElementById('caramel_volumeSlider');
+          caramel_volumeSlider.addEventListener('input', inputChange);
+          let caramel_msg = document.getElementById('caramel_msg');
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4 w-100 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">ブルーベリー回転角調整:{{ blue_j6_data }}°</h5>
+        <form action="/blue_j6_update" method="POST" enctype="multipart/form-data">
+          <div class="w-100 m-3">
+
+            <p id="blue_msg">調整量：</p>
+
+            <label>
+              <input type="range" min="-5" max="5" step="1" id="blueberry_volumeSlider" name="blue_j6" value="blueberry_volumeSlider.value">
+            </label>
+          </div>
+          
+          <button class="w-100 m-2 btn btn-secondary" type="submit">Submit</button>
+
+          <script>
+          function inputChange(event){
+            if (blueberry_volumeSlider.value >= 0){
+              blue_msg.innerText = '調整量：+' + blueberry_volumeSlider.value;
+            } else {
+              blue_msg.innerText = '調整量：' + blueberry_volumeSlider.value;
+            }
+          }
+          let blueberry_volumeSlider = document.getElementById('blueberry_volumeSlider');
+          blueberry_volumeSlider.addEventListener('input', inputChange);
+          let blue_msg = document.getElementById('blue_msg');
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
